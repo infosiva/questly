@@ -1,73 +1,81 @@
 import Link from 'next/link'
-import { ArrowRight, Star, Shield, Zap, Users, CheckCircle, ChevronRight } from 'lucide-react'
+import { ArrowRight, Zap, Users, Brain, Trophy, CheckCircle } from 'lucide-react'
 import config from '@/vertical.config'
+import { isAiTool } from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
-import HeroChatPreview from '@/components/HeroChatPreview'
-
-const SOCIAL_PROOF = [
-  { name: 'Sarah M.', role: 'Used last week', text: `Found the perfect ${config.providerLabel.toLowerCase()} within 20 minutes. The AI understood exactly what I needed.`, rating: 5 },
-  { name: 'James T.', role: 'Regular user', text: `${config.name} has transformed how I find trusted professionals. No more scrolling through endless profiles.`, rating: 5 },
-  { name: 'Priya K.', role: 'Verified family', text: 'The background checks and reviews gave us real peace of mind. Would recommend to anyone.', rating: 5 },
-]
 
 const HOW_IT_WORKS = [
-  { icon: '💬', step: '1', title: 'Chat with our AI', desc: `Tell our AI assistant what you need. No forms — just a natural conversation.` },
-  { icon: '✨', step: '2', title: 'Get matched', desc: `AI shortlists the best ${config.providerPlural.toLowerCase()} based on your specific requirements.` },
-  { icon: '📅', step: '3', title: 'Book instantly', desc: `Review profiles, check availability, and confirm — all in one place.` },
+  {
+    icon: '🎯',
+    step: '1',
+    title: 'Host picks topic & difficulty',
+    desc: 'Choose a subject, set the difficulty level, and pick how many questions. Add a custom topic for precision.',
+  },
+  {
+    icon: '✨',
+    step: '2',
+    title: 'AI generates the quiz instantly',
+    desc: 'Our AI quest master writes all the questions, multiple-choice options, and explanations in seconds.',
+  },
+  {
+    icon: '🏆',
+    step: '3',
+    title: 'Group joins & plays live',
+    desc: 'Share the 6-character session code. Players join on any device. Host controls the pace. Scores update live.',
+  },
+]
+
+const USE_CASES = [
+  { icon: '🏫', label: 'Teachers', desc: 'Run live classroom quizzes on any curriculum topic' },
+  { icon: '📚', label: 'Study groups', desc: 'Test each other on exam topics — AI does the hard work' },
+  { icon: '🏢', label: 'Team building', desc: 'Engage your team with custom work-related quizzes' },
+  { icon: '🏠', label: 'Family nights', desc: 'Perfect for all ages — AI adapts the difficulty' },
 ]
 
 export default function HomePage() {
-  const cats = config.categories.slice(0, 6)
+  const subjects = isAiTool(config) ? config.subjects : []
 
   return (
     <div className="overflow-hidden">
 
       {/* ── HERO ───────────────────────────────────────────── */}
-      <section className="relative px-6 pt-20 pb-28 max-w-6xl mx-auto">
+      <section className="relative px-6 pt-20 pb-28 max-w-6xl mx-auto text-center">
         {/* Decorative blob */}
-        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full opacity-20 blur-3xl -z-10 bg-gradient-to-br ${theme.gradient}`} />
+        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-15 blur-3xl -z-10 bg-gradient-to-br ${theme.gradient}`} />
 
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          {/* Left: copy */}
-          <div className="flex-1 text-center lg:text-left fade-up">
-            {/* Trust badge */}
-            <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${theme.badge} text-xs font-medium mb-6`}>
-              <Zap size={12} />
-              AI-Powered Matching — Free to Use
-            </div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6">
-              <span className="text-white">{config.tagline.split('—')[0]}</span>
-              {config.tagline.includes('—') && (
-                <><br /><span className={theme.gradientText}>— {config.tagline.split('—')[1].trim()}</span></>
-              )}
-            </h1>
-
-            <p className="text-white/55 text-lg mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Describe what you need in plain English. Our AI finds the best verified {config.providerPlural.toLowerCase()},
-              checks availability in real time, and helps you book in minutes — not days.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <Link href="/chat" className={btn.primary + ' text-base px-8 py-4'}>
-                Find my {config.providerLabel} <ArrowRight size={18} />
-              </Link>
-              <Link href="/providers" className={btn.secondary + ' text-base px-8 py-4'}>
-                I&apos;m a {config.providerLabel}
-              </Link>
-            </div>
-
-            {/* Trust row */}
-            <div className="flex flex-wrap items-center gap-5 mt-8 justify-center lg:justify-start text-sm text-white/45">
-              <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Background checked</span>
-              <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Real verified reviews</span>
-              <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />No hidden fees</span>
-            </div>
+        <div className="fade-up max-w-4xl mx-auto">
+          {/* Badge */}
+          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${theme.badge} text-xs font-medium mb-6`}>
+            <Zap size={12} />
+            Better than Kahoot — AI explains every answer
           </div>
 
-          {/* Right: AI chat preview */}
-          <div className="w-full lg:w-[400px] flex-shrink-0">
-            <HeroChatPreview />
+          {/* Headline */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6">
+            <span className="text-white">Start a </span>
+            <span className={theme.gradientText}>Quest</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-white/55 text-xl md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed">
+            Pick a topic, set difficulty, and AI generates a live quiz session for your group — answers explained as you go.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Link href="/host" className={btn.primary + ' text-base px-8 py-4'}>
+              Host a Session <ArrowRight size={18} />
+            </Link>
+            <Link href="/join" className={btn.secondary + ' text-base px-8 py-4'}>
+              Join a Session
+            </Link>
+          </div>
+
+          {/* Trust row */}
+          <div className="flex flex-wrap items-center gap-6 justify-center text-sm text-white/45">
+            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Free to start</span>
+            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />No account required</span>
+            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Any device, any browser</span>
           </div>
         </div>
       </section>
@@ -76,10 +84,10 @@ export default function HomePage() {
       <section className="border-y border-white/[0.06] py-8 glass">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { n: '2,400+', l: `Verified ${config.providerPlural}` },
-            { n: '98%',    l: 'Satisfaction rate' },
-            { n: '< 5min', l: 'Avg match time' },
-            { n: '£0',     l: 'To browse & match' },
+            { n: '< 30s',  l: 'Quiz generated' },
+            { n: '7',      l: 'Subject areas' },
+            { n: '100%',   l: 'AI-explained answers' },
+            { n: '£0',     l: 'Free to host' },
           ].map(s => (
             <div key={s.l}>
               <div className={`text-2xl font-extrabold ${theme.gradientText}`}>{s.n}</div>
@@ -89,93 +97,94 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── CATEGORIES ──────────────────────────────────────── */}
-      <section className="py-20 px-6 max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white mb-3">What do you need help with?</h2>
-          <p className="text-white/45">Browse by category or let our AI guide you</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {cats.map(cat => (
-            <Link
-              key={cat.id}
-              href={`/search?category=${cat.id}`}
-              className={`${theme.card} ${theme.cardHover} ${theme.glowHover} p-5 flex flex-col gap-2 group`}
-            >
-              <span className="text-3xl">{cat.icon}</span>
-              <span className="font-semibold text-white group-hover:${theme.textAccentBold} transition-colors">{cat.label}</span>
-              <span className="text-white/45 text-xs leading-snug">{cat.desc}</span>
-            </Link>
-          ))}
-          <Link
-            href="/search"
-            className={`${theme.card} ${theme.cardHover} p-5 flex flex-col gap-2 items-center justify-center group`}
-          >
-            <ChevronRight size={28} className={`${theme.textAccent} group-hover:translate-x-1 transition-transform`} />
-            <span className="font-semibold text-white/60 text-sm">All categories</span>
-          </Link>
-        </div>
-      </section>
-
       {/* ── HOW IT WORKS ────────────────────────────────────── */}
-      <section className="py-20 px-6 glass border-y border-white/[0.06]">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-3">How {config.name} works</h2>
-            <p className="text-white/45">From search to booked in under 5 minutes</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {HOW_IT_WORKS.map(step => (
-              <div key={step.step} className="text-center">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${theme.gradient} flex items-center justify-center text-2xl mx-auto mb-4`}>
-                  {step.icon}
-                </div>
-                <div className={`text-xs font-bold ${theme.textAccent} mb-2 uppercase tracking-widest`}>Step {step.step}</div>
-                <h3 className="font-bold text-white text-lg mb-2">{step.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
+      <section id="how-it-works" className="py-20 px-6 max-w-6xl mx-auto">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">How {config.name} works</h2>
+          <p className="text-white/45 text-lg">From idea to live quiz in under a minute</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {HOW_IT_WORKS.map(step => (
+            <div key={step.step} className={`${theme.card} p-8 text-center`}>
+              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${theme.gradient} flex items-center justify-center text-3xl mx-auto mb-5`}>
+                {step.icon}
               </div>
+              <div className={`text-xs font-bold ${theme.textAccent} mb-2 uppercase tracking-widest`}>Step {step.step}</div>
+              <h3 className="font-bold text-white text-lg mb-3">{step.title}</h3>
+              <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── SUBJECTS ────────────────────────────────────────── */}
+      <section id="subjects" className="py-20 px-6 glass border-y border-white/[0.06]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Quiz on anything</h2>
+            <p className="text-white/45 text-lg">7 subject areas — or enter any custom topic you like</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {subjects.map(subject => (
+              <Link
+                key={subject.id}
+                href={`/host?subject=${subject.id}`}
+                className={`${theme.card} ${theme.cardHover} ${theme.glowHover} p-5 flex flex-col gap-2 group cursor-pointer`}
+              >
+                <span className="text-3xl">{subject.icon}</span>
+                <span className="font-semibold text-white">{subject.label}</span>
+                <span className="text-white/45 text-xs leading-snug">{subject.desc}</span>
+                <span className={`text-xs ${theme.textAccent} mt-1 opacity-0 group-hover:opacity-100 transition-opacity`}>
+                  Host a quiz →
+                </span>
+              </Link>
             ))}
+            <Link
+              href="/host"
+              className={`${theme.card} ${theme.cardHover} p-5 flex flex-col gap-3 items-center justify-center group`}
+            >
+              <span className="text-3xl">✏️</span>
+              <span className="font-semibold text-white/60 text-sm text-center">Custom topic</span>
+              <span className="text-white/35 text-xs text-center">Enter any topic you like</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── SOCIAL PROOF ────────────────────────────────────── */}
+      {/* ── USE CASES ───────────────────────────────────────── */}
       <section className="py-20 px-6 max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white mb-3">Trusted by real families</h2>
-          <div className="flex items-center justify-center gap-1 text-amber-400">
-            {'★★★★★'} <span className="text-white/50 text-sm ml-2">4.9 average from 1,200+ reviews</span>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Who plays Questly?</h2>
+          <p className="text-white/45 text-lg">For teachers · Study groups · Team building · Family nights</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {SOCIAL_PROOF.map((r, i) => (
-            <div key={i} className={`${theme.card} p-6`}>
-              <div className="stars text-sm mb-3">{'★'.repeat(r.rating)}</div>
-              <p className="text-white/70 text-sm leading-relaxed mb-4">&ldquo;{r.text}&rdquo;</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {USE_CASES.map(u => (
+            <div key={u.label} className={`${theme.card} p-6 flex gap-4 items-start`}>
+              <span className="text-3xl flex-shrink-0">{u.icon}</span>
               <div>
-                <div className="font-semibold text-white text-sm">{r.name}</div>
-                <div className="text-white/40 text-xs">{r.role}</div>
+                <h4 className="font-semibold text-white mb-1">{u.label}</h4>
+                <p className="text-white/50 text-sm leading-relaxed">{u.desc}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── TRUST FEATURES ──────────────────────────────────── */}
+      {/* ── WHY QUESTLY ─────────────────────────────────────── */}
       <section className="py-20 px-6 glass border-t border-white/[0.06]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-3">Why {config.name}?</h2>
-            <p className="text-white/45">We built what {config.name.slice(0,4)} was missing</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Why {config.name}?</h2>
+            <p className="text-white/45 text-lg">Not just trivia — it&apos;s learning disguised as a game</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: <Shield size={22} />, title: 'Background checks', desc: 'Every provider is DBS/background checked before they can take bookings.' },
-              { icon: <Star size={22} />,   title: 'Portable reviews',  desc: `${config.providerPlural} own their reviews — they follow them everywhere, preventing gaming.` },
-              { icon: <Zap size={22} />,    title: 'AI matching',       desc: 'Describe your situation in plain English. No tick boxes, no wasted calls.' },
-              { icon: <Users size={22} />,  title: 'Same-provider continuity', desc: 'Families can re-book the same trusted provider effortlessly.' },
-              { icon: <CheckCircle size={22} />, title: 'Transparent pricing', desc: 'Full quote upfront. No surprise call-out fees or hidden extras.' },
-              { icon: <ArrowRight size={22} />, title: '5-min booking',  desc: 'Go from search to confirmed booking without leaving the app.' },
+              { icon: <Brain size={22} />,   title: 'AI-generated questions',  desc: 'No question bank to run dry. Every session is unique, generated fresh by AI on your exact topic.' },
+              { icon: <Zap size={22} />,     title: 'Live & real-time',        desc: 'Players see questions at the same moment. Host controls pace. Results update as answers come in.' },
+              { icon: <CheckCircle size={22} />, title: 'Every answer explained', desc: 'Unlike Kahoot, Questly explains every correct answer. Players actually learn, not just compete.' },
+              { icon: <Users size={22} />,   title: 'No app download needed', desc: 'Players join from any browser on any device — phone, tablet, laptop. Just share the code.' },
+              { icon: <Trophy size={22} />,  title: 'Live leaderboard',        desc: 'Scores update after every question. The leaderboard keeps everyone engaged till the final question.' },
+              { icon: <ArrowRight size={22} />, title: 'One-click session setup', desc: 'Host sets up a full quiz session in under a minute. Pick topic, difficulty, questions — done.' },
             ].map(f => (
               <div key={f.title} className={`${theme.card} p-5 flex gap-4 items-start`}>
                 <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${theme.solidLight} flex items-center justify-center ${theme.textAccent}`}>
@@ -196,12 +205,19 @@ export default function HomePage() {
         <div className={`max-w-3xl mx-auto text-center glass rounded-3xl p-12 border ${theme.border} relative overflow-hidden`}>
           <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-5 rounded-3xl`} />
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 relative">
-            Ready to find your perfect {config.providerLabel.toLowerCase()}?
+            Ready to run your first Quest?
           </h2>
-          <p className="text-white/50 mb-8 text-lg relative">Free to match. No card required. Takes 2 minutes.</p>
-          <Link href="/chat" className={btn.primary + ' text-base px-10 py-4 relative'}>
-            Get matched now <ArrowRight size={18} />
-          </Link>
+          <p className="text-white/50 mb-8 text-lg relative">
+            Free to host. No account needed. AI builds the quiz in seconds.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center relative">
+            <Link href="/host" className={btn.primary + ' text-base px-10 py-4'}>
+              Host a Session <ArrowRight size={18} />
+            </Link>
+            <Link href="/join" className={btn.secondary + ' text-base px-8 py-4'}>
+              Join with a code
+            </Link>
+          </div>
         </div>
       </section>
 
