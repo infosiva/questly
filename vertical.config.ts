@@ -153,12 +153,12 @@ export function isAiTool(c: VerticalConfig): c is AiToolConfig {
 // ════════════════════════════════════════════════════════════
 
 const config: VerticalConfig = {
-  // ── Questly — Live AI Classroom Quiz ─────────────────────
+  // ── QuizBites — Live AI Classroom Quiz ───────────────────
   mode:       'ai-tool',
-  id:         'questly',
-  name:       'Questly',
-  tagline:    'Start a quest — AI generates your live quiz, your group competes in real time',
-  domain:     'questly.ai',
+  id:         'quizbites',
+  name:       'QuizBites',
+  tagline:    'Bite-sized AI quizzes — host a live session, your group competes in real time',
+  domain:     'quizbites.app',
   themeColor: 'blue',
 
   toolType:  'quiz',
@@ -175,8 +175,8 @@ const config: VerticalConfig = {
     { id: 'general',   label: 'General',      icon: '🧠', desc: 'Custom topic — anything goes' },
   ],
 
-  aiSystemPrompt: `You are the AI quest master on Questly — a live AI-powered quiz platform.
-Your role: generate questions, explain answers, keep the session energetic and educational.
+  aiSystemPrompt: `You are the AI host of QuizBites — a live AI-powered quiz platform for classrooms and groups.
+Your role: generate bite-sized questions, explain answers, keep the session energetic and educational.
 Adapt question difficulty based on the age group set for the session.
 Always explain the correct answer after each question — this is learning, not just testing.
 Return valid JSON for all question generation requests.`,
@@ -202,9 +202,9 @@ Be encouraging. Highlight the top scorer. Suggest what to revise next.`,
     exportResults: true,
   },
 
-  metaTitle:       'Questly — Live AI Quiz Sessions for Any Group',
-  metaDescription: 'Host a live quiz session on any topic. AI generates questions instantly, tracks scores, explains answers. Free to start.',
-  keywords:        ['live quiz', 'questly', 'ai quiz', 'kahoot alternative', 'interactive quiz', 'classroom quiz'],
+  metaTitle:       'QuizBites — Live AI Quiz Sessions for Any Group',
+  metaDescription: 'Host a live quiz session on any topic. AI generates bite-sized questions instantly, tracks scores, explains answers. Free to start.',
+  keywords:        ['live quiz', 'quizbites', 'ai quiz', 'kahoot alternative', 'interactive quiz', 'classroom quiz'],
 }
 
 export default config
@@ -301,13 +301,13 @@ Return JSON: { questions: [{ type, question, options?, answer, explanation }] }`
     keywords:        ['ai tutor', 'personalised learning', 'nudge ai', 'ai teacher', 'learn online', 'kids tutor'],
   },
 
-  // Option C — Questly: Live AI Classroom Quiz
-  questly: {
+  // Option C — QuizBites: Live AI Classroom Quiz
+  quizbites: {
     mode:       'ai-tool',
-    id:         'questly',
-    name:       'Questly',
-    tagline:    'Start a quest — AI generates your live quiz, your class competes in real time',
-    domain:     'questly.ai',
+    id:         'quizbites',
+    name:       'QuizBites',
+    tagline:    'Bite-sized AI quizzes — host a live session, your group competes in real time',
+    domain:     'quizbites.app',
     themeColor: 'blue',
     toolType:   'quiz',
     ageGroups:  ['kids', 'teens', 'adults', 'all'],
@@ -321,7 +321,7 @@ Return JSON: { questions: [{ type, question, options?, answer, explanation }] }`
       { id: 'coding',    label: 'Coding',       icon: '💻', desc: 'Web, Python & logic' },
       { id: 'general',   label: 'General',      icon: '🧠', desc: 'Custom topic — anything goes' },
     ],
-    aiSystemPrompt: `You are the AI quest master on Questly — a live AI-powered quiz platform.
+    aiSystemPrompt: `You are the AI host of QuizBites — a live AI-powered quiz platform for classrooms and groups.
 Your role: generate questions, explain answers, keep the session energetic and educational.
 Adapt question difficulty based on the age group set for the session.
 Always explain the correct answer after each question — this is learning, not just testing.
@@ -337,9 +337,9 @@ Be encouraging. Highlight the top scorer. Suggest what to revise next.`,
       leaderboard: true, streaks: false, ageAdaptive: true,
       progressTrack: true, familyMode: false, exportResults: true,
     },
-    metaTitle:       'Questly — Live AI Quiz Sessions for Any Group',
-    metaDescription: 'Host a live quiz session on any topic. AI generates questions instantly, tracks scores, explains answers. Free to start.',
-    keywords:        ['live quiz', 'questly', 'ai quiz', 'kahoot alternative', 'interactive quiz', 'classroom quiz'],
+    metaTitle:       'QuizBites — Live AI Quiz Sessions for Any Group',
+    metaDescription: 'Host a live quiz session on any topic. AI generates bite-sized questions instantly, tracks scores, explains answers. Free to start.',
+    keywords:        ['live quiz', 'quizbites', 'ai quiz', 'kahoot alternative', 'interactive quiz', 'classroom quiz'],
   },
 }
 
