@@ -65,7 +65,7 @@ export default function HomePage() {
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link href="/host" className={btn.primary + ' text-base px-8 py-4'}>
-              Host a Session <ArrowRight size={18} />
+              Create a Live Quiz <ArrowRight size={18} />
             </Link>
             <Link href="/join" className={btn.secondary + ' text-base px-8 py-4'}>
               Join a Session
@@ -74,7 +74,7 @@ export default function HomePage() {
 
           {/* Trust row */}
           <div className="flex flex-wrap items-center gap-6 justify-center text-sm text-white/45">
-            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Free to start</span>
+            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Free to start, no credit card required</span>
             <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />No account required</span>
             <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Any device, any browser</span>
           </div>
