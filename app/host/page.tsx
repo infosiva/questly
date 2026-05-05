@@ -5,6 +5,7 @@ import { ArrowRight, Loader2 } from 'lucide-react'
 import config from '@/vertical.config'
 import { isAiTool } from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
+import AdUnit from '@/components/AdUnit'
 
 const DIFFICULTIES = [
   { id: 'easy',   label: 'Easy',   desc: 'Age under 12', emoji: '🟢' },
@@ -185,6 +186,9 @@ function HostForm() {
               {error}
             </div>
           )}
+
+          {/* Ad — shown while user configures quiz, high-attention moment */}
+          <AdUnit size="banner" />
 
           {/* Submit */}
           <button
