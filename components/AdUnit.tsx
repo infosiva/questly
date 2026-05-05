@@ -6,9 +6,9 @@ interface AdUnitProps {
   className?: string
 }
 
-// ── Adsterra keys for quizbites.app (approved 2026-05-04) ───────────────────
-const ADSTERRA_KEY_RECT   = '1753338cf4100ee950b4ab7fa495580a'  // 300×250
-const ADSTERRA_KEY_BANNER = 'a43616513958134eaae287099c00b50c'  // 728×90
+// ── Adsterra keys for quizbites.app (approved 2026-05-05) ───────────────────
+const ADSTERRA_KEY_RECT   = 'f8a7369e066546406ed314b7c1306020'  // 300×250
+const ADSTERRA_KEY_BANNER = 'f721526e1bd62fcdb25722f03e3ed465'  // 728×90
 
 // ── Affiliate banners — earn commission immediately, no approval needed ──────
 const AFFILIATE_BANNERS = [
@@ -100,7 +100,7 @@ export function SocialBar() {
     const s = document.createElement('script')
     s.async = true
     s.setAttribute('data-cfasync', 'false')
-    s.src = '//pl29337037.profitablecpmratenetwork.com/47/d0/82/47d082af8dd8cdfba26e03857d3b001c.js'
+    s.src = '//pl29340326.profitablecpmratenetwork.com/22/73/48/227348153f1194b0c02dc7d82259e4e9.js'
     document.body.appendChild(s)
   }, [])
   return null
