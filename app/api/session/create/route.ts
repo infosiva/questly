@@ -118,7 +118,7 @@ Format: { "topic": "...", "difficulty": "...", "questions": [{ "id": 1, "questio
 
     let questions: QuizQuestion[]
     try {
-      const aiResponse = await aiChat([{ role: 'user', content: prompt }], config.aiSystemPrompt)
+      const aiResponse = await aiChat([{ role: 'user', content: prompt }], config.aiSystemPrompt, 1200, 'best')
       questions = parseQuestions(aiResponse)
     } catch {
       questions = FALLBACK_QUESTIONS
