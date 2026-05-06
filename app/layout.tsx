@@ -5,12 +5,13 @@ import './globals.css'
 import config from '@/vertical.config'
 import { getMeshStyle, getScrollbarColor, COLOR_MAP } from '@/lib/themeColors'
 import Navbar from '@/components/Navbar'
+import FooterExtras from '@/components/FooterExtras'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title:       config.metaTitle,
-  description: 'Create engaging live quizzes with AI in minutes. Perfect for teachers, study groups, and team building. Choose a topic, set difficulty, and play with your group.',
+  description: 'Generate live quizzes with AI in minutes - Pick a topic, set difficulty, and play with your group!',
   keywords:    config.keywords,
 }
 
@@ -45,13 +46,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Dynamic mesh gradient bg — changes per vertical */}
         <div style={meshStyle} />
 
+        <Script
+          src="http://31.97.56.148:3098/t.js"
+          data-site="quizbites.app"
+          strategy="lazyOnload"
+        />
         <Navbar />
 
         <main className="flex-1">
           {children}
         </main>
 
-        <footer className="border-t border-white/[0.06] py-8 px-6">
+        <footer className="py-8 px-6">
+          <FooterExtras />
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-sm">
             <span>© {new Date().getFullYear()} {config.name}. All rights reserved.</span>
             <div className="flex gap-6">

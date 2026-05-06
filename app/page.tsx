@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Zap, Users, Brain, Trophy, CheckCircle } from 'lucide-react'
+import { ArrowRight, Zap, Users, CheckCircle, Monitor } from 'lucide-react'
 import config from '@/vertical.config'
 import { isAiTool } from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
@@ -8,26 +8,26 @@ import AdUnit from '@/components/AdUnit'
 const HOW_IT_WORKS = [
   {
     icon: '🎯',
-    step: '1',
+    step: '01',
     title: 'Host picks topic & difficulty',
-    desc: 'Choose a subject, set the difficulty level, and pick how many questions. Add a custom topic for precision.',
+    desc: 'Choose a subject, difficulty, and number of questions. Custom topics supported.',
   },
   {
     icon: '✨',
-    step: '2',
+    step: '02',
     title: 'AI generates the quiz instantly',
-    desc: 'Our AI quest master writes all the questions, multiple-choice options, and explanations in seconds.',
+    desc: 'Full quiz with questions, options, and explanations ready in seconds.',
   },
   {
     icon: '🏆',
-    step: '3',
+    step: '03',
     title: 'Group joins & plays live',
-    desc: 'Share the 6-character session code. Players join on any device. Host controls the pace. Scores update live.',
+    desc: 'Share the 6-character code. Players join on any device. Scores update live.',
   },
 ]
 
 const USE_CASES = [
-  { icon: '🏫', label: 'Teachers', desc: 'Run live classroom quizzes on any curriculum topic' },
+  { icon: '🏫', label: 'Teachers',     desc: 'Run live classroom quizzes on any curriculum topic' },
   { icon: '📚', label: 'Study groups', desc: 'Test each other on exam topics — AI does the hard work' },
   { icon: '🏢', label: 'Team building', desc: 'Engage your team with custom work-related quizzes' },
   { icon: '🏠', label: 'Family nights', desc: 'Perfect for all ages — AI adapts the difficulty' },
@@ -39,49 +39,83 @@ export default function HomePage() {
   return (
     <div className="overflow-hidden">
 
-      {/* ── HERO ───────────────────────────────────────────── */}
-      <section className="relative px-6 pt-20 pb-28 max-w-6xl mx-auto text-center">
-        {/* Decorative blob */}
-        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-15 blur-3xl -z-10 bg-gradient-to-br ${theme.gradient}`} />
+      {/* ── HERO — Live Session Energy ───────────────────────── */}
+      <section className="relative px-6 pt-14 pb-20 text-center overflow-hidden">
+        {/* Blue radial glow top-center */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full opacity-[0.14] blur-3xl -z-10"
+          style={{ background: 'radial-gradient(ellipse at top, #2563eb 0%, transparent 70%)' }} />
 
-        <div className="fade-up max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${theme.badge} text-xs font-medium mb-6`}>
-            <Zap size={12} />
-            Better than Kahoot — AI explains every answer
+        <div className="max-w-3xl mx-auto">
+
+          {/* Top badge row */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-7">
+            {/* Green LIVE pulsing badge */}
+            <div className="flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-300 uppercase tracking-widest">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+              </span>
+              LIVE
+            </div>
+            {/* Better than Kahoot badge */}
+            <div className="flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-semibold text-blue-300">
+              <Zap size={10} /> Better than Kahoot
+            </div>
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6">
-            <span className="text-white">Start a </span>
-            <span className={theme.gradientText}>Quest</span>
+          <h1 className="font-black leading-[0.90] tracking-tight mb-6">
+            <span className="block text-white text-5xl sm:text-6xl md:text-7xl">Run a live quiz</span>
+            <span className="block text-5xl sm:text-6xl md:text-7xl"
+              style={{ background: 'linear-gradient(135deg, #2563eb, #60a5fa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              in 30 seconds.
+            </span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-white/55 text-xl md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            Pick a topic, set difficulty. AI generates a live quiz with explained answers for your group.
+          <p className="text-white/50 text-lg md:text-xl max-w-xl mx-auto leading-relaxed mb-10">
+            Pick a topic, AI writes all the questions — with explanations. Your class plays live on any device.
           </p>
 
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link href="/host" className={btn.primary + ' text-base px-8 py-4'}>
-              Create a Live Quiz <ArrowRight size={18} />
+          {/* Session join box — styled input UI */}
+          <div className="flex items-center max-w-sm mx-auto mb-8 rounded-xl overflow-hidden border border-blue-500/30"
+            style={{ background: 'rgba(7,13,26,0.80)', backdropFilter: 'blur(12px)' }}>
+            <input
+              type="text"
+              readOnly
+              placeholder="Enter session code"
+              className="flex-1 bg-transparent px-4 py-3.5 text-sm text-white placeholder-white/25 outline-none font-mono tracking-widest"
+            />
+            <Link href="/join"
+              className="px-5 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110"
+              style={{ background: '#2563eb' }}>
+              Join →
             </Link>
-            <Link href="/join" className={btn.secondary + ' text-base px-8 py-4'}>
-              Join a Session
+          </div>
+
+          {/* Two CTAs */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+            <Link href="/host"
+              className="flex items-center justify-center gap-2 rounded-xl px-8 py-4 text-base font-black text-white transition-all hover:brightness-110 hover:scale-105"
+              style={{ background: '#2563eb' }}>
+              <Monitor size={18} /> Host a Quiz <ArrowRight size={18} />
+            </Link>
+            <Link href="/#how-it-works"
+              className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-8 py-4 text-base font-bold text-white hover:bg-white/[0.08] transition-all">
+              See how it works
             </Link>
           </div>
 
           {/* Trust row */}
-          <div className="flex flex-wrap items-center gap-6 justify-center text-sm text-white/45">
-            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Free to start, no credit card required. Create a quiz in minutes.</span>
-            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />No account required</span>
-            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Any device, any browser</span>
+          <div className="flex flex-wrap items-center gap-5 justify-center text-sm text-white/40">
+            <span className="flex items-center gap-1.5"><CheckCircle size={13} className={theme.textAccent} />Free to host</span>
+            <span className="flex items-center gap-1.5"><CheckCircle size={13} className={theme.textAccent} />No account for players</span>
+            <span className="flex items-center gap-1.5"><CheckCircle size={13} className={theme.textAccent} />Any device</span>
           </div>
+
         </div>
       </section>
 
-      {/* ── STATS BAR ───────────────────────────────────────── */}
+      {/* ── STATS BAR — classroom metrics ───────────────────── */}
       <section className="border-y border-white/[0.06] py-8 glass">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
@@ -98,135 +132,106 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS ────────────────────────────────────── */}
-      <section id="how-it-works" className="py-20 px-6 max-w-6xl mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">How {config.name} works</h2>
-          <p className="text-white/45 text-lg">From idea to live quiz in under a minute</p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {HOW_IT_WORKS.map(step => (
-            <div key={step.step} className={`${theme.card} p-8 text-center`}>
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${theme.gradient} flex items-center justify-center text-3xl mx-auto mb-5`}>
-                {step.icon}
-              </div>
-              <div className={`text-xs font-bold ${theme.textAccent} mb-2 uppercase tracking-widest`}>Step {step.step}</div>
-              <h3 className="font-bold text-white text-lg mb-3">{step.title}</h3>
-              <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── SUBJECTS ────────────────────────────────────────── */}
-      <section id="subjects" className="py-20 px-6 glass border-y border-white/[0.06]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Quiz on anything</h2>
-            <p className="text-white/45 text-lg">7 subject areas — or enter any custom topic you like</p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {subjects.map(subject => (
-              <Link
-                key={subject.id}
-                href={`/host?subject=${subject.id}`}
-                className={`${theme.card} ${theme.cardHover} ${theme.glowHover} p-5 flex flex-col gap-2 group cursor-pointer`}
-              >
-                <span className="text-3xl">{subject.icon}</span>
-                <span className="font-semibold text-white">{subject.label}</span>
-                <span className="text-white/45 text-xs leading-snug">{subject.desc}</span>
-                <span className={`text-xs ${theme.textAccent} mt-1 opacity-0 group-hover:opacity-100 transition-opacity`}>
-                  Host a quiz →
-                </span>
-              </Link>
-            ))}
-            <Link
-              href="/host"
-              className={`${theme.card} ${theme.cardHover} p-5 flex flex-col gap-3 items-center justify-center group`}
-            >
-              <span className="text-3xl">✏️</span>
-              <span className="font-semibold text-white/60 text-sm text-center">Custom topic</span>
-              <span className="text-white/35 text-xs text-center">Enter any topic you like</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── USE CASES ───────────────────────────────────────── */}
-      <section className="py-20 px-6 max-w-6xl mx-auto">
+      {/* ── HOW IT WORKS — horizontal timeline ──────────────── */}
+      <section id="how-it-works" className="py-16 px-6 max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Who plays Questly?</h2>
-          <p className="text-white/45 text-lg">For teachers · Study groups · Team building · Family nights</p>
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-2">From idea to live quiz in 3 steps</h2>
+          <p className="text-white/40 text-sm">No prep time. No question writing. Just play.</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {USE_CASES.map(u => (
-            <div key={u.label} className={`${theme.card} p-6 flex gap-4 items-start`}>
-              <span className="text-3xl flex-shrink-0">{u.icon}</span>
-              <div>
-                <h4 className="font-semibold text-white mb-1">{u.label}</h4>
-                <p className="text-white/50 text-sm leading-relaxed">{u.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* ── WHY QUESTLY ─────────────────────────────────────── */}
-      <section className="py-20 px-6 glass border-t border-white/[0.06]">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Why {config.name}?</h2>
-            <p className="text-white/45 text-lg">Not just trivia — it&apos;s learning disguised as a game</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: <Brain size={22} />,   title: 'AI-generated questions',  desc: 'No question bank to run dry. Every session is unique, generated fresh by AI on your exact topic.' },
-              { icon: <Zap size={22} />,     title: 'Live & real-time',        desc: 'Players see questions at the same moment. Host controls pace. Results update as answers come in.' },
-              { icon: <CheckCircle size={22} />, title: 'Every answer explained', desc: 'Unlike Kahoot, Questly explains every correct answer. Players actually learn, not just compete.' },
-              { icon: <Users size={22} />,   title: 'No app download needed', desc: 'Players join from any browser on any device — phone, tablet, laptop. Just share the code.' },
-              { icon: <Trophy size={22} />,  title: 'Live leaderboard',        desc: 'Scores update after every question. The leaderboard keeps everyone engaged till the final question.' },
-              { icon: <ArrowRight size={22} />, title: 'One-click session setup', desc: 'Host sets up a full quiz session in under a minute. Pick topic, difficulty, questions — done.' },
-            ].map(f => (
-              <div key={f.title} className={`${theme.card} p-5 flex gap-4 items-start`}>
-                <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${theme.solidLight} flex items-center justify-center ${theme.textAccent}`}>
-                  {f.icon}
+        <div className="relative">
+          {/* Connector line */}
+          <div className="hidden md:block absolute top-8 left-[16.67%] right-[16.67%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {HOW_IT_WORKS.map(step => (
+              <div key={step.step} className="relative text-center">
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 border border-white/10`}
+                  style={{ background: 'rgba(59,130,246,0.15)' }}>
+                  {step.icon}
                 </div>
-                <div>
-                  <h4 className="font-semibold text-white mb-1">{f.title}</h4>
-                  <p className="text-white/50 text-sm leading-relaxed">{f.desc}</p>
-                </div>
+                <div className={`text-[11px] font-black uppercase tracking-widest ${theme.textAccent} mb-2`}>{step.step}</div>
+                <h3 className="font-black text-white text-base mb-2">{step.title}</h3>
+                <p className="text-white/45 text-sm leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── AD UNIT — between features and CTA ── */}
-      <div className="max-w-3xl mx-auto px-6 py-2">
-        <AdUnit size="rectangle" />
+      {/* ── USE CASES — who's it for ─────────────────────────── */}
+      <section className="py-16 px-6 glass border-y border-white/[0.06]">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-black text-white mb-2">Who uses QuizBites?</h2>
+            <p className="text-white/40 text-sm">From classrooms to boardrooms</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {USE_CASES.map(u => (
+              <div key={u.label} className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.07] text-center">
+                <div className="text-4xl mb-3">{u.icon}</div>
+                <h3 className="font-bold text-white text-sm mb-2">{u.label}</h3>
+                <p className="text-white/40 text-xs leading-relaxed">{u.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SUBJECT GRID ────────────────────────────────────── */}
+      <section id="subjects" className="py-16 px-6 max-w-5xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-black text-white mb-2">Pick any subject</h2>
+          <p className="text-white/40 text-sm">AI writes all the questions — you just pick the topic</p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {subjects.map(subject => (
+            <Link
+              key={subject.id}
+              href={`/host?subject=${subject.id}`}
+              className={`group ${theme.card} ${theme.cardHover} p-4 flex items-center gap-3 rounded-2xl border border-white/[0.07] hover:border-blue-500/30 transition-all`}
+            >
+              <span className="text-2xl group-hover:scale-110 transition-transform">{subject.icon}</span>
+              <div className="min-w-0">
+                <div className="font-semibold text-white text-sm">{subject.label}</div>
+                <div className="text-white/30 text-xs truncate hidden sm:block">{subject.desc}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <Link href="/host" className={btn.primary + ' text-base px-10 py-4 font-black'}>
+            Create a Custom Quiz <ArrowRight size={18} />
+          </Link>
+        </div>
+      </section>
+
+      {/* ── AD UNIT ─────────────────────────────────────────── */}
+      <div className="max-w-5xl mx-auto px-6 pb-4">
+        <AdUnit slot="homepage-mid" format="banner" />
       </div>
 
-      {/* ── FINAL CTA ───────────────────────────────────────── */}
-      <section className="py-24 px-6">
-        <div className={`max-w-3xl mx-auto text-center glass rounded-3xl p-12 border ${theme.border} relative overflow-hidden`}>
-          <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-5 rounded-3xl`} />
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 relative">
-            Ready to run your first Quest?
+      {/* ── CTA ─────────────────────────────────────────────── */}
+      <section className="py-16 px-6 glass border-t border-white/[0.06]">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="text-5xl mb-4">🏆</div>
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
+            Your class is waiting.
           </h2>
-          <p className="text-white/50 mb-8 text-lg relative">
-            Free to host. No account needed. AI builds the quiz in seconds.
+          <p className="text-white/45 mb-8 text-base">
+            Host your first quiz in 30 seconds. Free. No account needed for players.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center relative">
-            <Link href="/host" className={btn.primary + ' text-base px-10 py-4'}>
-              Host a Session <ArrowRight size={18} />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/host" className={btn.primary + ' text-base px-10 py-4 font-black'}>
+              <Monitor size={18} /> Host a Quiz
             </Link>
-            <Link href="/join" className={btn.secondary + ' text-base px-8 py-4'}>
-              Join with a code
+            <Link href="/join" className={btn.secondary + ' text-base px-10 py-4 font-black'}>
+              <Users size={18} /> Join with Code
             </Link>
           </div>
         </div>
       </section>
-
     </div>
   )
 }
