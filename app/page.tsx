@@ -59,7 +59,7 @@ export default function HomePage() {
 
           {/* Subheadline */}
           <p className="text-white/55 text-xl md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            Pick a topic, set difficulty, and AI generates a live quiz session for your group — answers explained as you go.
+            Pick a topic, set difficulty. AI generates a live quiz with explained answers for your group.
           </p>
 
           {/* CTA buttons */}
@@ -74,7 +74,7 @@ export default function HomePage() {
 
           {/* Trust row */}
           <div className="flex flex-wrap items-center gap-6 justify-center text-sm text-white/45">
-            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Free to start, no credit card required</span>
+            <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Free to start, no credit card required. Create a quiz in minutes.</span>
             <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />No account required</span>
             <span className="flex items-center gap-1.5"><CheckCircle size={14} className={theme.textAccent} />Any device, any browser</span>
           </div>
