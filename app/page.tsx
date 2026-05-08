@@ -112,6 +112,12 @@ export default function HomePage() {
             <span className="flex items-center gap-1.5"><CheckCircle size={13} className={theme.textAccent} />Any device</span>
           </div>
 
+          <div className="flex flex-col items-center gap-0.5 text-xs opacity-50 mt-3">
+            <span>✓ 3 free quizzes — no account needed</span>
+            <span>✓ Register free for unlimited access</span>
+            <span>✓ No credit card ever</span>
+          </div>
+
         </div>
       </section>
 
@@ -207,11 +213,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── AD UNIT ─────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-6 pb-4">
-        <AdUnit slot="homepage-mid" format="banner" />
-      </div>
-
       {/* ── CTA ─────────────────────────────────────────────── */}
       <section className="py-16 px-6 glass border-t border-white/[0.06]">
         <div className="max-w-2xl mx-auto text-center">
@@ -230,8 +231,18 @@ export default function HomePage() {
               <Users size={18} /> Join with Code
             </Link>
           </div>
+          <div className="flex flex-col items-center gap-0.5 text-xs opacity-50 mt-3">
+            <span>✓ 3 free quizzes — no account needed</span>
+            <span>✓ Register free for unlimited access</span>
+            <span>✓ No credit card ever</span>
+          </div>
         </div>
       </section>
+
+      {/* ── AD — bottom of page ── */}
+      <div className="max-w-5xl mx-auto px-6 py-6">
+        <AdUnit slot="homepage-bottom" format="banner" />
+      </div>
     </div>
   )
 }
