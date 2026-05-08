@@ -5,7 +5,7 @@ import { ArrowRight, Loader2 } from 'lucide-react'
 import config from '@/vertical.config'
 import { isAiTool } from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
-import AdUnit from '@/components/AdUnit'
+import { useGate, RegisterGate } from '@siva/shared-ui'
 
 const DIFFICULTIES = [
   { id: 'easy',   label: 'Easy',   desc: 'Age under 12', emoji: '🟢' },
@@ -20,6 +20,8 @@ function HostForm() {
   const searchParams  = useSearchParams()
 
   const subjects = isAiTool(config) ? config.subjects : []
+
+  const { count: gateCount, showGate, increment: gateIncrement, onRegistered, dismissGate } = useGate('quizbites', 3)
 
   const [hostName,       setHostName]       = useState('')
   const [subject,        setSubject]        = useState(searchParams.get('subject') ?? subjects[0]?.id ?? '')
@@ -62,7 +64,8 @@ function HostForm() {
       }
 
       const { sessionId } = await res.json()
-      router.push(`/session/${sessionId}/host`)
+      const allowed = await gateIncrement()
+      if (allowed) router.push(`/session/${sessionId}/host`)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
       setLoading(false)
@@ -187,8 +190,6 @@ function HostForm() {
             </div>
           )}
 
-          {/* Ad — shown while user configures quiz, high-attention moment */}
-          <AdUnit size="banner" />
 
           {/* Submit */}
           <button
@@ -217,6 +218,19 @@ function HostForm() {
 
         </form>
       </div>
+
+      {showGate && (
+        <RegisterGate
+          freeUsed={gateCount}
+          freeLimit={3}
+          freeFeature="hosted quizzes"
+          lockedFeature="unlimited sessions & class analytics"
+          accentColor="#2563eb"
+          site="quizbites"
+          onSuccess={onRegistered}
+          onDismiss={dismissGate}
+        />
+      )}
     </div>
   )
 }

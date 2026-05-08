@@ -3,6 +3,7 @@ import { aiChat } from '@/lib/ai'
 import { createSession, type QuizQuestion } from '@/lib/sessions'
 import config from '@/vertical.config'
 import { isAiTool } from '@/vertical.config'
+import { AI_LIMITER } from '@/lib/rateLimit'
 
 function generateCode(): string {
   return Math.random().toString(36).substring(2, 8).toUpperCase()
@@ -89,6 +90,9 @@ function parseQuestions(raw: string): QuizQuestion[] {
 }
 
 export async function POST(req: NextRequest) {
+  const limited = AI_LIMITER.check(req)
+  if (limited) return limited
+
   try {
     const body = await req.json()
     const { hostName, subject, difficulty, questionCount, customTopic } = body as {
