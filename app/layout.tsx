@@ -6,13 +6,45 @@ import config from '@/vertical.config'
 import { getMeshStyle, getScrollbarColor, COLOR_MAP } from '@/lib/themeColors'
 import Navbar from '@/components/Navbar'
 import FooterExtras from '@/components/FooterExtras'
+import ChatBot from '@/components/ChatBot'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title:       config.metaTitle,
-  description: 'Generate live quizzes with AI in minutes - Pick a topic, set difficulty, and play with your group!',
+  description: config.metaDescription,
   keywords:    config.keywords,
+  metadataBase: new URL(`https://${config.domain}`),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title:       config.metaTitle,
+    description: config.metaDescription,
+    url:         `https://${config.domain}`,
+    siteName:    config.name,
+    type:        'website',
+    locale:      'en_US',
+    images: [
+      {
+        url:   `/og-image.png`,
+        width:  1200,
+        height: 630,
+        alt:    `${config.name} — ${config.tagline}`,
+      },
+    ],
+  },
+  twitter: {
+    card:        'summary_large_image',
+    title:       config.metaTitle,
+    description: config.metaDescription,
+    images:      [`https://${config.domain}/og-image.png`],
+  },
+  robots: {
+    index:  true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 }
 
 // Derive CSS custom properties from vertical theme at build time
@@ -56,6 +88,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">
           {children}
         </main>
+
+        <ChatBot />
 
         <footer className="py-8 px-6">
           <FooterExtras />
