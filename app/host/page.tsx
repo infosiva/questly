@@ -5,7 +5,8 @@ import { ArrowRight, Loader2 } from 'lucide-react'
 import config from '@/vertical.config'
 import { isAiTool } from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
-import { useGate, RegisterGate } from '@siva/shared-ui'
+import { useGate } from '@/lib/shared/useGate'
+import RegisterGate from '@/lib/shared/RegisterGate'
 
 const DIFFICULTIES = [
   { id: 'easy',   label: 'Easy',   desc: 'Age under 12', emoji: '🟢' },
