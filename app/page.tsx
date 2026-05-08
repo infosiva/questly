@@ -3,7 +3,6 @@ import { ArrowRight, Zap, Users, CheckCircle, Monitor } from 'lucide-react'
 import config from '@/vertical.config'
 import { isAiTool } from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
-import AdUnit from '@/components/AdUnit'
 
 const HOW_IT_WORKS = [
   {
@@ -239,10 +238,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── AD — bottom of page ── */}
-      <div className="max-w-5xl mx-auto px-6 py-6">
-        <AdUnit slot="homepage-bottom" format="banner" />
-      </div>
+
     </div>
   )
 }
