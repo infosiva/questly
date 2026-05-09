@@ -6,6 +6,8 @@ import { ArrowRight, Zap, Users, CheckCircle, Monitor, Star, BarChart2, Download
 import config from '@/vertical.config'
 import { isAiTool } from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
+import { Spotlight } from '@/components/aceternity/spotlight'
+import { CardContainer, CardBody, CardItem } from '@/components/aceternity/card-3d'
 
 // ── Static data ───────────────────────────────────────────────
 
@@ -263,6 +265,9 @@ export default function HomePage() {
 
       {/* ── HERO — Live Classroom Energy ─────────────────────── */}
       <section className="relative px-6 pt-14 pb-20 text-center overflow-hidden min-h-[88vh] flex flex-col justify-center">
+        {/* Aceternity Spotlight */}
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20 pointer-events-none" fill="#2563eb" />
+
         {/* Animated network dots background */}
         <NetworkBg />
 
@@ -423,16 +428,27 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
             {PRO_FEATURES.map(f => (
-              <div key={f.title}
-                className="p-5 rounded-2xl border border-blue-500/15 text-center"
-                style={{ background: 'rgba(37,99,235,0.06)' }}>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-blue-400 mx-auto mb-3"
-                  style={{ background: 'rgba(37,99,235,0.15)' }}>
-                  {f.icon}
-                </div>
-                <h3 className="font-bold text-white text-sm mb-1">{f.title}</h3>
-                <p className="text-white/40 text-xs leading-relaxed">{f.desc}</p>
-              </div>
+              <CardContainer key={f.title} containerClassName="w-full">
+                <CardBody className="w-full">
+                  <div
+                    className="p-5 rounded-2xl border border-blue-500/15 text-center w-full"
+                    style={{ background: 'rgba(37,99,235,0.06)' }}
+                  >
+                    <CardItem translateZ={40}>
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center text-blue-400 mx-auto mb-3"
+                        style={{ background: 'rgba(37,99,235,0.15)' }}>
+                        {f.icon}
+                      </div>
+                    </CardItem>
+                    <CardItem translateZ={20}>
+                      <h3 className="font-bold text-white text-sm mb-1">{f.title}</h3>
+                    </CardItem>
+                    <CardItem translateZ={10}>
+                      <p className="text-white/40 text-xs leading-relaxed">{f.desc}</p>
+                    </CardItem>
+                  </div>
+                </CardBody>
+              </CardContainer>
             ))}
           </div>
 
