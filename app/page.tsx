@@ -8,6 +8,13 @@ import { isAiTool } from '@/vertical.config'
 import { theme, btn } from '@/lib/theme'
 import { Spotlight } from '@/components/aceternity/spotlight'
 import { CardContainer, CardBody, CardItem } from '@/components/aceternity/card-3d'
+import GuidedTour, { type TourStep } from '@/components/GuidedTour'
+
+const QUESTLY_TOUR: TourStep[] = [
+  { target: '#hero-host-btn', title: 'Host a quiz free', icon: '🎯', body: 'Pick any topic — AI writes all questions with explanations instantly. No prep needed.', placement: 'bottom' },
+  { target: '#how-it-works', title: 'How it works', icon: '📡', body: 'Students join on any device with a code — no account, no app download.', placement: 'top' },
+  { target: '#subjects', title: 'Any subject', icon: '📚', body: 'Science, history, maths — or type your own custom topic. AI handles the rest.', placement: 'top' },
+]
 
 // ── Static data ───────────────────────────────────────────────
 
@@ -333,7 +340,7 @@ export default function HomePage() {
                 </Link>
               </div>
               <div className="flex flex-col sm:flex-row gap-2">
-                <Link href="/host"
+                <Link href="/host" id="hero-host-btn"
                   className="flex-1 flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-black text-white transition-all hover:brightness-110 hover:scale-105"
                   style={{ background: 'linear-gradient(135deg, #1d4ed8, #2563eb)' }}>
                   <Monitor size={16} /> Host a Quiz <ArrowRight size={14} />
@@ -558,6 +565,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <GuidedTour steps={QUESTLY_TOUR} storageKey="questly_tour_v1" accentColor="#3b82f6" />
     </div>
   )
 }
