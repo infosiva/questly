@@ -202,9 +202,15 @@ Be encouraging. Highlight the top scorer. Suggest what to revise next.`,
     exportResults: true,
   },
 
-  metaTitle:       'QuizBites — Live AI Quiz Sessions for Any Group',
-  metaDescription: 'Host a live quiz session on any topic. AI generates bite-sized questions instantly, tracks scores, explains answers. Free to start.',
-  keywords:        ['live quiz', 'quizbites', 'ai quiz', 'kahoot alternative', 'interactive quiz', 'classroom quiz'],
+  metaTitle:       'QuizBites — Run a Live AI Quiz in 30 Seconds | Free Kahoot Alternative',
+  metaDescription: 'Host a live classroom quiz on any topic in 30 seconds. AI writes all the questions, explains every answer, tracks scores in real time. Free — no account needed for players. Better than Kahoot.',
+  keywords:        [
+    'live quiz', 'quizbites', 'ai quiz generator', 'kahoot alternative', 'free kahoot alternative',
+    'classroom quiz tool', 'interactive quiz for teachers', 'ai quiz for students',
+    'live classroom quiz', 'multiplayer quiz game', 'quiz generator for teachers',
+    'ai quiz maker', 'kahoot killer', 'quiz game free', 'teacher quiz tool',
+    'edtech quiz', 'formative assessment tool', 'corporate training quiz',
+  ],
 }
 
 export default config
@@ -337,9 +343,15 @@ Be encouraging. Highlight the top scorer. Suggest what to revise next.`,
       leaderboard: true, streaks: false, ageAdaptive: true,
       progressTrack: true, familyMode: false, exportResults: true,
     },
-    metaTitle:       'QuizBites — Live AI Quiz Sessions for Any Group',
-    metaDescription: 'Host a live quiz session on any topic. AI generates bite-sized questions instantly, tracks scores, explains answers. Free to start.',
-    keywords:        ['live quiz', 'quizbites', 'ai quiz', 'kahoot alternative', 'interactive quiz', 'classroom quiz'],
+    metaTitle:       'QuizBites — Run a Live AI Quiz in 30 Seconds | Free Kahoot Alternative',
+    metaDescription: 'Host a live classroom quiz on any topic in 30 seconds. AI writes all the questions, explains every answer, tracks scores in real time. Free — no account needed for players. Better than Kahoot.',
+    keywords:        [
+      'live quiz', 'quizbites', 'ai quiz generator', 'kahoot alternative', 'free kahoot alternative',
+      'classroom quiz tool', 'interactive quiz for teachers', 'ai quiz for students',
+      'live classroom quiz', 'multiplayer quiz game', 'quiz generator for teachers',
+      'ai quiz maker', 'kahoot killer', 'quiz game free', 'teacher quiz tool',
+      'edtech quiz', 'formative assessment tool', 'corporate training quiz',
+    ],
   },
 }
 
