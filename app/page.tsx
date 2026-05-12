@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { ArrowRight, Zap, Users, CheckCircle, Monitor, Star, BarChart2, Download, Infinity, Sparkles } from 'lucide-react'
 import config from '@/vertical.config'
 import { isAiTool } from '@/vertical.config'
@@ -109,19 +109,28 @@ function NetworkBg() {
     if (!ctx) return
 
     let animId: number
-    const W = canvas.offsetWidth
-    const H = canvas.offsetHeight
-    canvas.width = W
-    canvas.height = H
 
     const NODES = 48
     type Node = { x: number; y: number; vx: number; vy: number }
-    const nodes: Node[] = Array.from({ length: NODES }, () => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-    }))
+    let nodes: Node[] = []
+
+    function initNodes(W: number, H: number) {
+      nodes = Array.from({ length: NODES }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+      }))
+    }
+
+    function resize() {
+      if (!canvas) return
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+      initNodes(canvas.width, canvas.height)
+    }
+
+    resize()
 
     function draw() {
       if (!ctx || !canvas) return
@@ -160,8 +169,12 @@ function NetworkBg() {
 
       animId = requestAnimationFrame(draw)
     }
+
+    const ro = new ResizeObserver(() => resize())
+    ro.observe(canvas)
+
     draw()
-    return () => cancelAnimationFrame(animId)
+    return () => { cancelAnimationFrame(animId); ro.disconnect() }
   }, [])
 
   return (
@@ -240,6 +253,12 @@ export default function HomePage() {
   const subjects = isAiTool(config) ? config.subjects : []
   const [isPro, setIsPro] = useState(false)
   const [upgrading, setUpgrading] = useState(false)
+  const [sessionCode, setSessionCode] = useState('')
+
+  const handleJoinSubmit = useCallback(() => {
+    const code = sessionCode.trim().toUpperCase()
+    if (code) window.location.href = `/join?code=${code}`
+  }, [sessionCode])
 
   useEffect(() => {
     // Check localStorage for pro status
@@ -329,15 +348,20 @@ export default function HomePage() {
                 style={{ background: 'rgba(7,13,26,0.80)', backdropFilter: 'blur(12px)' }}>
                 <input
                   type="text"
-                  readOnly
+                  value={sessionCode}
+                  onChange={e => setSessionCode(e.target.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8).toUpperCase())}
+                  onKeyDown={e => e.key === 'Enter' && handleJoinSubmit()}
                   placeholder="Enter session code"
                   className="flex-1 bg-transparent px-4 py-3.5 text-sm text-white placeholder-white/25 outline-none font-mono tracking-widest"
+                  autoComplete="off"
+                  spellCheck={false}
                 />
-                <Link href="/join"
+                <button
+                  onClick={handleJoinSubmit}
                   className="px-5 py-3.5 text-sm font-black text-white transition-all hover:brightness-110 whitespace-nowrap"
                   style={{ background: 'linear-gradient(135deg, #2563eb, #0ea5e9)' }}>
                   Join →
-                </Link>
+                </button>
               </div>
               <div className="flex flex-col sm:flex-row gap-2">
                 <Link href="/host" id="hero-host-btn"

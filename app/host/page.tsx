@@ -64,9 +64,9 @@ function HostForm() {
         throw new Error(data.error ?? 'Failed to create session')
       }
 
-      const { sessionId } = await res.json()
+      const { sessionId, code } = await res.json()
       const allowed = await gateIncrement()
-      if (allowed) router.push(`/session/${sessionId}/host`)
+      if (allowed) router.push(`/session/${sessionId}/host?code=${code}`)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
       setLoading(false)
