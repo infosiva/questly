@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Outfit } from 'next/font/google'
+import Script from 'next/script'
 
 const outfit = Outfit({ subsets: ['latin'], weight: ['700', '800', '900'], variable: '--font-display' })
 import './globals.css'
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     locale:      'en_US',
     images: [
       {
-        url:   `/og-image.png`,
+        url:   `/opengraph-image`,
         width:  1200,
         height: 630,
         alt:    `${config.name} — ${config.tagline}`,
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     card:        'summary_large_image',
     title:       config.metaTitle,
     description: config.metaDescription,
-    images:      [`https://${config.domain}/og-image.png`],
+    images:      [`https://${config.domain}/opengraph-image`],
   },
   robots: {
     index:  true,
@@ -82,6 +83,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="mesh-blob3" style={{ position: 'absolute', bottom: '-15%', left: '40%', width: 450, height: 450, borderRadius: '50%', background: `radial-gradient(circle, ${colors.primary}15 0%, transparent 65%)`, filter: 'blur(40px)' }} />
         </div>
 
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4237294630161176"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <Navbar />
 
         <Providers>
