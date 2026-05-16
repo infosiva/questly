@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Outfit } from 'next/font/google'
+
+const outfit = Outfit({ subsets: ['latin'], weight: ['700', '800', '900'], variable: '--font-display' })
 import './globals.css'
 import config from '@/vertical.config'
 import { getMeshStyle, getScrollbarColor, COLOR_MAP } from '@/lib/themeColors'
@@ -11,7 +13,7 @@ import FeedbackWidget from '@/components/FeedbackWidget'
 import CookieConsent from "../components/CookieConsent";
 import Footer from "../components/Footer";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
 export const metadata: Metadata = {
   title:       config.metaTitle,
@@ -68,7 +70,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       } as React.CSSProperties}
       suppressHydrationWarning
     >
-      <body className={`${inter.className} min-h-full flex flex-col text-white`}
+      <body className={`${inter.variable} ${outfit.variable} min-h-full flex flex-col text-white`}
+        style={{ fontFamily: 'var(--font-body, system-ui)' }}
         style={{ background: colors.base }}
       >
         {/* Dynamic mesh gradient bg — changes per vertical */}
