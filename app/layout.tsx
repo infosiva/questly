@@ -71,8 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className={`${inter.variable} ${outfit.variable} min-h-full flex flex-col text-white`}
-        style={{ fontFamily: 'var(--font-body, system-ui)' }}
-        style={{ background: colors.base }}
+        style={{ background: colors.base, fontFamily: 'var(--font-body, system-ui)' }}
       >
         {/* Dynamic mesh gradient bg — changes per vertical */}
         <div style={meshStyle} />
